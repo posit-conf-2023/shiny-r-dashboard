@@ -1,4 +1,4 @@
-WORKSHOP_TITLE
+Shiny Dashboards
 ================
 
 ### posit::conf 2023
