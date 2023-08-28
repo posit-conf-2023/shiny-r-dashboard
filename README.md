@@ -1,27 +1,10 @@
-Shiny Dashboards
-================
-
 ### posit::conf 2023
 
-by INSTRUCTOR_NAME
+by Colin Rundel
 
 -----
 
-INSTRUCTIONS FOR INSTRUCTORS: Please insert information about your
-workshop below. Then, add workshop content in the materials folder and
-link to each session’s materials from the schedule below. You are
-welcomed to add more rows to the schedule. We just ask that you take
-breaks at the specified times. Once you are done adding information, you
-can remove these instructions from the README.
-
-Alternatively, you can completely redo the organization of this repo 
-as a Quarto website or some other format you prefer to host your workshop
-materials. The only requirement is that your workshop materials are hosted 
-here.
-
------
-
-:spiral_calendar: September 17 and 18, 2023  
+:spiral_calendar: September 17, 2023  
 :alarm_clock:     09:00 - 17:00  
 :hotel:           ROOM TBD  
 :writing_hand:    [pos.it/conf](http://pos.it/conf)
@@ -30,48 +13,41 @@ here.
 
 ## Overview
 
-ADD ABSTRACT
+In this workshop we will explore all of the interesting and variety ways you can use shiny: from adding dynamic elements to your existing RMarkdown / Quarto documents, to building and deploying dashboards for reporting, and customizing the appearance and themeing of the app (and your outplots like plots and tables). This workshop assumes that you have a basic familiarity with Shiny (e.g. the ability to write simple apps and basics of reactivety).
 
-**This workshop is for you if you...*
+## This workshop is for you if
 
-ADD THREE POINTS
+* have some experience with Shiny and want to improve your skills,
+
+* are interested in building dashboards for reporting, and
+
+* want to learn about styling and theming your dashboards.
+
+Users who are new to Shiny will benefit from taking Getting Started with Shiny for R before joining this workshop.
 
 ## Prework
 
-ADD INFORMATION YOU WANT LEARNERS TO HAVE / STEPS THEY WANT THEM TO
-COMPLETE PRIOR TO THE WORKSHOP. THIS COULD BE A LINK TO A THREAD ON
-RSTUDIO COMMUNITY, PACKAGE INSTALL INSTRUCTIONS, HOW TO GET AN
-RSTUDIO.CLOUD ACCOUNT, ETC.
+There is nothing you will need to do before attending this workshop. We will be making use of Posit Cloud for all activities and exercises so you will just need to bring a laptop that is able to access the conference WiFi.
 
 ## Schedule
 
 ### Day 1
 
-| Time          | Activity         |
-| :------------ | :--------------- |
-| 09:00 - 10:30 | Session 1        |
-| 10:30 - 11:00 | *Coffee break*   |
-| 11:00 - 12:30 | Session 2        |
-| 12:30 - 13:30 | *Lunch break*    |
-| 13:30 - 15:00 | Session 3        |
-| 15:00 - 15:30 | *Coffee break*   |
-| 15:30 - 17:00 | Session 4        |
+| Time          | Activity              |
+| :------------ | :-------------------- |
+| 09:00 - 09:30 | Welcome               |
+| 09:30 - 10:30 | Case study            |
+| 10:30 - 11:00 | *Coffee break*        |
+| 11:00 - 12:30 | flexdashboard         |
+| 12:30 - 13:30 | *Lunch break*         |
+| 13:30 - 15:00 | Shinydashboard.       |
+| 15:00 - 15:30 | *Coffee break*        |
+| 15:30 - 17:00 | Publishing            |
 
-### Day 2
-
-| Time          | Activity         |
-| :------------ | :--------------- |
-| 09:00 - 10:30 | Session 1        |
-| 10:30 - 11:00 | *Coffee break*   |
-| 11:00 - 12:30 | Session 2        |
-| 12:30 - 13:30 | *Lunch break*    |
-| 13:30 - 15:00 | Session 3        |
-| 15:00 - 15:30 | *Coffee break*   |
-| 15:30 - 17:00 | Session 4        |
 
 ## Instructor
 
-ADD INSTRUCTOR BIO
+[Colin Rundel](https://rundel.github.io/) is Associate Professor of the Practice at Duke University in the department of Statistical Science where he has been teaching since 2012. His work focuses on teaching statistical computing to both undergraduate and graduate students in both R and Python. He has been teaching and using Shiny since 2015.
 
 -----
 
