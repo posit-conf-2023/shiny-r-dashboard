@@ -6,7 +6,7 @@ by Colin Rundel
 
 -----
 
-:spiral_calendar: September 17, 2023  
+:spiral_calendar: September 18, 2023  
 :alarm_clock:     09:00 - 17:00  
 :hotel:           ROOM TBD  
 :writing_hand:    [pos.it/conf](http://pos.it/conf)
