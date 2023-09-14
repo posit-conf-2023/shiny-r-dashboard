@@ -1,0 +1,99 @@
+---
+title: "Shiny Dashboards<br/>bslib"
+author: "Colin Rundel"
+format: 
+  revealjs:
+    logo: images/shiny.png
+    footer: "posit::conf 2023 - Shiny Dashboards"
+    slide-number: true
+    highlight-style: a11y
+    theme: [default, custom.scss]
+    self-contained: true
+execute:
+  echo: true
+title-slide-attributes:
+    data-background-image: "images/Hyatt-Regency-Chicago.webp"
+    data-background-size: cover
+    data-background-opacity: "0.5"
+---
+
+```{r setup}
+#| include: false
+library(shiny)
+library(tidyverse)
+
+knitr::opts_knit$set(root.dir = here::here())
+```
+
+
+## bslib
+
+> The bslib R package provides a modern UI toolkit for Shiny and R Markdown based on Bootstrap. It facilitates:
+>
+> * Creation of delightful and customizable Shiny dashboards.
+>    
+>    * The underlying UI components (e.g., cards, value boxes, sidebars, etc) are also designed to work in other contexts (e.g., in R Markdown).
+::: {.fragment .semi-fade-out}
+> * Custom theming of Shiny apps and R Markdown documents.
+> 
+>    * Apps can even be themed interactively in real-time.
+> * Use of modern versions of Bootstrap and Bootswatch
+>
+>    * Shiny and R Markdown currently default to Bootstrap 3 and may continue to do so to maintain backwards compatibility.
+:::
+
+
+## Demo 11 - bslib dashboard
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo11.R`
+:::
+```{r}
+#| eval: false
+#| code-line-numbers: "|12-35|12|13|14-23|24-34"
+#| file: "demos/demo11.R"
+```
+
+## Layouts
+
+As we've just seen the basic layout of elements is to place each element on its own row (e.g. each card in Demo 11).
+
+Columns can be constructed using `layout_columns()` (or `layout_columns_wrap()`) where each element is a column
+
+- Columns will have equal width by default
+
+- `col_widths` can be used to specify width (in terms of bootstrap columns)
+
+- Total widths >12 will result in multiple rows
+
+- Negative widths result in empty columns
+
+- `layout_columns()` can be nested inside other `layout_columns()` for mixed layouts
+
+
+::: aside
+To get the most out of bslib it is important to wrap your head around [filling layouts](https://rstudio.github.io/bslib/articles/filling/index.html)
+:::
+
+## Demo 12 - layout
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo12.R`
+:::
+```{r}
+#| eval: false
+#| code-line-numbers: "|26-45|27|28-45|33-38|46-51|66,67"
+#| file: "demos/demo12.R"
+```
+
+
+## Demo 13 - other components
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo13.R`
+:::
+```{r}
+#| eval: false
+#| code-line-numbers: "|14|15-29|18-26|30-42|32-41"
+#| file: "demos/demo13.R"
+```

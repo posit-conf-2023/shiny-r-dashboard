@@ -1,0 +1,59 @@
+---
+title: "Demo 03"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+params:
+  city: "Los Angeles"
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+
+d = readr::read_csv(here::here("data/weather.csv"))
+d_city = d |>
+  filter(city %in% params$city)
+```
+
+Row {data-height=650}
+-------------------------------------
+
+### Temperature
+
+```{r}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=temp)) +
+  ggtitle(params$city) + 
+  geom_line()
+```
+
+Row {data-height=350}
+-------------------------------------
+   
+### Humidity
+
+```{r}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=humidity)) +
+  geom_line()
+```   
+
+###
+
+```{r}
+d_city |>
+  mutate(
+    day = lubridate::wday(time, label = TRUE, abbr = FALSE),
+    date = as.character(lubridate::date(time))
+  ) |>
+  group_by(date, day) |>
+  summarize(
+    `min` = min(temp),
+    `max` = max(temp),
+    .groups = "drop"
+  ) |>
+  knitr::kable()
+```

@@ -1,0 +1,292 @@
+---
+title: "Shiny Dashboards<br/>`shinydashboard`"
+author: "Colin Rundel"
+format: 
+  revealjs:
+    logo: images/shiny.png
+    footer: "posit::conf 2023 - Shiny Dashboards"
+    slide-number: true
+    highlight-style: a11y
+    theme: [default, custom.scss]
+    self-contained: true
+execute:
+  echo: true
+title-slide-attributes:
+    data-background-image: "images/Hyatt-Regency-Chicago.webp"
+    data-background-size: cover
+    data-background-opacity: "0.5"
+---
+
+```{r setup}
+#| include: false
+library(shiny)
+```
+
+## shinydashboard
+
+is a package that enables the easy generation of [bootstrap](https://getbootstrap.com/) based dynamic Shiny dashboards.
+
+The core of the package is a common dashboard layout and a number of specialized UI elements (static and reactive) for creating an attractive interface. 
+
+<br/>
+
+![](images/shinydashboard_layout.png){fig-align="center" width="40%"}
+
+
+## Dashboard basics
+
+```{r}
+#| eval: false
+#| code-line-numbers: "|5-11|5,11|6-8|9|10"
+library(shiny)
+library(shinydashboard)
+
+shinyApp(
+  ui = dashboardPage(
+    dashboardHeader(
+      title="shinydashboard"
+    ),
+    dashboardSidebar(),
+    dashboardBody()
+  ),
+  server = function(input, output, session) {
+  }
+)
+```
+
+## Dashboard header
+
+This is a container for the `title` and any `dropdownMenu()`s 
+
+- the latter are somewhat limited, support "messages", "notifications", "tasks" types
+
+- Dynamic menus can be generated using `dropdownMenuOutput()` and `renderMenu()` in the ui and server respectively.
+
+. . .
+
+::: {.r-stack}
+![](images/shinydashboard_menu-messages.png){.fragment .fade-in-then-out width="900"}
+
+![](images/shinydashboard_menu-notifications.png){.fragment .fade-in-then-out width="900"}
+
+![](images/shinydashboard_menu-tasks.png){.fragment .fade-in-then-out width="900"}
+:::
+
+
+## Dashboard sidebar
+
+This functions in the same way as the `sidebarPanel()` in `sidebarLayout()`, allowing for the inclusion of inputs and any other html content. 
+
+Alternatively, it can also function as a `tabPanel()` like menu.
+
+- instead of `tabsetPanel()` we use `sidebarMenu()`, 
+
+- text and icons are assigned using `menuItem()`
+
+- the panels being activated are contained in the body and not the sidebar 
+    - their UI code goes under `dashboardBody()` using `tabItems()` and `tabItem()`. 
+    
+    - `menuItem()`s are connected to `tabItems()` via matching the `tabName` arguments.
+
+
+## Demo 07-1 - `sidebarMenu()`
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo07-1.R`
+:::
+```{r}
+#| eval: false
+#| code-line-numbers: "|17-36|18-25|26-36|38-49|41,29|34,45|52-69"
+#| file: "../demos/demo07-1.R"
+```
+
+## Demo 07-2 - Dynamic `sidebarMenu()`
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo07-2.R`
+:::
+```{r}
+#| eval: false
+#| code-line-numbers: "|26|42-47"
+#| file: "../demos/demo07-2.R"
+```
+
+
+## Body building blocks
+
+::: columns
+::: {.column width="50%"}
+### `box()`
+![](images/shinydashboard_box.png){fig-align="center" width="80%"}
+![](images/shinydashboard_box2.png){fig-align="center" width="80%"}
+:::
+
+::: {.column width="50%"}
+### `infoBox()`
+![](images/shinydashboard_infobox.png){fig-align="center" width="90%"}
+
+<br/>
+
+### `valueBox()`
+![](images/shinydashboard_valuebox.png){fig-align="center" width="90%"}
+
+:::
+:::
+
+
+## Colors
+
+The color of the various boxes is specified via `status` or `background` for `box()` or `color` for the others.
+
+Available options include,
+
+```{r}
+shinydashboard:::validStatuses
+```
+
+<br/>
+
+```{r}
+shinydashboard:::validColors
+```
+
+
+
+## Body layout
+
+::: {.small}
+The layout of box elements on a dashboard is controlled by combining `fluidRow()` and `column()` (as is standard with regular shiny apps)
+
+- this layout is based on a page having width of 12 units
+
+- `column()` and `box()` elements take a `width` argument using these units
+:::
+
+
+:::::: {.r-stack}
+
+::::: {.fragment .fade-in-then-out}
+Row-based layout
+
+:::: {.columns}
+
+::: {.column width='50%'}
+![](images/shinydashboard_layout-mixed.png){fig-align="center" width=400}
+:::
+
+::: {.column .small width='50%'}
+```r
+dashboardBody(
+  fluidRow(
+    box(title = "Box title", ...),
+    box(...)
+  ),
+
+  fluidRow(
+    box(title = "Title 1", ...),
+    box(title = "Title 2", ...),
+    box(title = "Title 3", ...)
+  ),
+
+  fluidRow(
+    box(...),
+    box(title = "Title 5", ...),
+    box(title = "Title 6", ...)
+  )
+)
+```
+:::
+::::
+:::::
+
+
+::::: {.fragment .fade-in-then-out}
+Column-based layout
+
+:::: {.columns}
+::: {.column width='50%'}
+![](images/shinydashboard_layout-cols.png){fig-align="center" width=400}
+:::
+
+::: {.column .small width='50%'}
+```r
+dashboardBody(
+  fluidRow(
+    column(width = 4,
+      box(title = "Box title", ...),
+      box(title = "Title 1", ...),
+      box(...)
+    ),
+    column(width = 4,
+      box(...),
+      box(title = "Title 3", ...),
+      box(title = "Title 5", ...)
+    ),
+    column(width = 4,
+      box(title = "Title 2", ...),
+      box(title = "Title 6", ...)
+    )
+  )
+)
+```
+:::
+::::
+:::::
+
+
+::::: {.fragment .fade-in-then-out}
+Mixed layout
+
+:::: {.columns}
+::: {.column width='50%'}
+![](images/shinydashboard_layout-mixed.png){fig-align="center" width=400}
+:::
+
+::: {.column .small width='50%'}
+```r
+dashboardBody(
+  fluidRow(
+    box(title = "Box title", ...),
+    box(...)
+  ),
+  fluidRow(
+    column(width = 4,
+      box(title = "Title 1", ...),
+      box(...)
+    ),
+    column(width = 4,
+      box(title = "Title 3", ...),
+      box(title = "Title 5", ...)
+    ),
+    column(width = 4,
+      box(title = "Title 2", ...),
+      box(title = "Title 6", ...)
+    )
+  )
+)
+```
+:::
+::::
+:::::
+
+::::::
+
+
+
+
+
+## Your turn - Exercise 5
+
+Starting with the app from Demo 5 convert the app to use shinydashboard instead of flexdashboard - we have provided some basic scaffolding shinydashboard code in `exercises/ex05.R` and the demo code in `exercises/ex05.Rmd`.
+
+Try to preserve the column-based layout and general proportions (read column widths) of the original.
+
+Since shinydashboard does not have a gauge element you can use a value box for everything
+  - If you're feeling adventurous try using a flexdashboard gauge in your shinydashboard, what happens?
+
+```{r}
+#| echo: false
+countdown::countdown(10)
+```
+
+

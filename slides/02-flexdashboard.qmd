@@ -1,0 +1,1028 @@
+---
+title: "Shiny Dashboards<br/>flexdashboard"
+author: "Colin Rundel"
+format: 
+  revealjs:
+    logo: images/shiny.png
+    footer: "posit::conf 2023 - Shiny Dashboards"
+    slide-number: true
+    highlight-style: a11y
+    theme: [default, custom.scss]
+    self-contained: true
+execute:
+  echo: true
+title-slide-attributes:
+    data-background-image: "images/Hyatt-Regency-Chicago.webp"
+    data-background-size: cover
+    data-background-opacity: "0.5"
+---
+
+## flexdashboard
+
+flexdashboard is the easiest way to get started making dashboards - at its core it is an RMarkdown document template that leverages CSS flexbox (+ a lot more) to generate attractive full page layouts that are well suited for publishing multiple data visualizations and related summaries and text.
+
+- Dashboards are constructed using a RMarkdown document
+
+- Row or column based layouts can be used
+
+- Structure is specified via markdown headings
+
+- Interactivity can be added by Shiny, but it is not required
+
+- Quarto is not currently supported
+
+
+## Demo 02
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo02.Rmd`
+:::
+````{.markdown code-line-numbers=""}
+---
+title: "Demo 02"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+---
+
+```{{r setup}}
+#| include: false
+library(tidyverse)
+
+d = readr::read_csv(here::here("data/weather.csv"))
+d_city = d |>
+  filter(city %in% "Chicago")
+```
+
+Row {data-height=650}
+-------------------------------------
+
+### Temperature
+
+```{{r}}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=temp)) +
+  geom_line()
+```
+
+Row {data-height=350}
+-------------------------------------
+   
+### Humidity
+
+```{{r}}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=humidity)) +
+  geom_line()
+```   
+
+###
+
+```{{r}}
+d_city |>
+  mutate(
+    day = lubridate::wday(time, label = TRUE, abbr = FALSE),
+    date = as.character(lubridate::date(time))
+  ) |>
+  group_by(date, day) |>
+  summarize(
+    `min` = min(temp),
+    `max` = max(temp),
+    .groups = "drop"
+  ) |>
+  knitr::kable()
+```
+````
+
+## Your turn - Exercise 1
+
+Open `exercises/ex02.Rmd`, which contains the code from the previous slide, and try running it knitting it.
+
+Check that you are able to successfully render the flexdashboard. 
+
+If everything is working try modifying the code:
+
+- What happens if you remove `orientation: rows` from the front matter?
+
+- What happens if you change the `Row` text?
+
+- What happens if you change or remove `{data-height=*}`?
+
+
+```{r}
+#| echo: false
+countdown::countdown(5)
+```
+
+
+# Layouts
+
+## Default
+
+:::: {.columns}
+::: {.column width='50%'}
+````markdown
+---
+title: "Default layout"
+output: flexdashboard::flex_dashboard
+---
+
+### Chart 1
+
+```{{r}}
+
+```
+
+### Chart 2
+
+```{{r}}
+
+```
+
+
+
+
+
+
+
+
+
+
+````
+:::
+
+::: {.column width='50%'}
+![](images/flexdashboard-layout-default.png){fig-align="center" width="100%"}
+:::
+::::
+
+
+## Column layout
+
+:::: {.columns}
+::: {.column width='50%'}
+````markdown
+---
+title: "Column layout"
+output: flexdashboard::flex_dashboard
+---
+    
+Column
+-------------------------------------
+    
+### Chart 1
+    
+```{{r}}
+```
+   
+Column
+-------------------------------------
+   
+### Chart 2
+
+```{{r}}
+```   
+ 
+### Chart 3
+    
+```{{r}}
+```
+````
+:::
+
+::: {.column width='50%'}
+![](images/flexdashboard-layout-cols.png){fig-align="center" width="100%"}
+:::
+::::
+
+
+## Row layout
+
+:::: {.columns}
+::: {.column width='50%'}
+````markdown
+---
+title: "Row layout"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+---
+    
+Row
+-------------------------------------
+    
+### Chart 1
+    
+```{{r}}
+```
+ 
+### Chart 2
+    
+```{{r}}
+``` 
+
+Row
+-------------------------------------
+    
+### Chart 3
+    
+```{{r}}
+```
+    
+### Chart 4
+
+```{{r}}
+```
+````
+:::
+
+::: {.column width='50%'}
+![](images/flexdashboard-layout-rows.png){fig-align="center" width="100%"}
+:::
+::::
+
+
+## Sidebar layout
+
+:::: {.columns}
+::: {.column width='50%'}
+````markdown
+---
+title: "Sidebar layout"
+output: flexdashboard::flex_dashboard
+---
+
+Inputs {.sidebar}
+-------------------------------------
+
+```{{r}}
+```
+ 
+Column
+-------------------------------------
+    
+### Chart 1
+    
+```{{r}}
+```
+    
+### Chart 2
+
+```{{r}}
+```
+````
+:::
+
+::: {.column width='50%'}
+![](images/flexdashboard-layout-sidebar.png){fig-align="center" width="100%"}
+:::
+::::
+
+
+## Tabset layout
+
+:::: {.columns}
+::: {.column width='50%'}
+````markdown
+---
+title: "Tabset layout"
+output: flexdashboard::flex_dashboard
+---
+    
+Column 
+-------------------------------------
+    
+### Chart 1
+    
+```{{r}}
+```
+   
+Column {.tabset}
+-------------------------------------
+   
+### Chart 2
+
+```{{r}}
+```   
+ 
+### Chart 3
+    
+```{{r}}
+```
+````
+:::
+
+::: {.column width='50%'}
+![](images/flexdashboard-layout-tabset.png){fig-align="center" width="100%"}
+:::
+::::
+
+
+## Multipage layout
+
+````markdown
+---
+title: "Multipage layout"
+output: flexdashboard::flex_dashboard
+---
+
+Page 1
+=====================================  
+    
+Column {data-width=600}
+-------------------------------------
+    
+### Chart 1
+    
+```{{r}}
+```
+   
+Column {data-width=400}
+-------------------------------------
+   
+### Chart 2
+
+```{{r}}
+```   
+ 
+### Chart 3
+    
+```{{r}}
+```
+
+Page 2 {data-orientation=rows}
+=====================================     
+   
+Row {data-height=600}
+-------------------------------------
+
+### Chart 4
+
+```{{r}}
+```
+
+Row {data-height=400}
+-------------------------------------
+   
+### Chart 5
+
+```{{r}}
+```   
+    
+### Chart 6
+
+```{{r}}
+```
+````
+
+## Storyboard layout
+
+````markdown
+---
+title: "Storyboard layout"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+---
+
+### Frame 1
+
+```{{r}}
+```
+
+*** 
+
+Some commentary about Frame 1.
+
+### Frame 2 {data-commentary-width=400}
+
+```{{r}}
+```
+
+*** 
+
+Some commentary about Frame 2.
+
+````
+
+
+
+
+## Markdown to layout
+
+From the preceeding examples it is relatively straightforward to see how markdown is translated into the flexdashboard's layout,
+
+* Level 1 headings (e.g. `#` or `==========`) are used to designated Pages
+
+* Level 2 headings (e.g. `##` or `----------`) are used to designated columns or rows (depending on the orientation option)
+
+* Level 3 headings (e.g. `###`) are used to designated chart / output elements
+
+* Horizontal rules (e.g. `***`, `---`, or `___` on a line by themselves) are used to separate the chart / output from the commentary with a storyboard layout
+
+::: aside
+When using `==========` or `----------` the text on the preceeding line is required but the actual text does not matter. For `#` or `##` a text label is not required.
+:::
+
+
+## Heading options
+
+For the sharp-eyed among you, you may have noticed certain headings were given additional attributes via arguments wrapped in `{}`. These are CSS attributes that modify the display behavior of the elements they are attached to. Some common attribues,
+
+* `data-height` and `data-width` control the *relative* size of elements
+
+* `data-padding` or `.no-padding` control the padding around elements in pixels
+
+* `data-orientation` can be applied to pages to alter the orientation for a specific page
+
+* `.tabset` indicates a column or row should be composed on tabset elements
+
+* `.sidebar` indicates a sidebar should be included (local or global)
+
+## Some useful document options
+
+In the previous layout examples we saw the used some document options in the front matter,
+a couple of commonly used options that are worth knowning about:
+
+* `orientation` - default is `columns`, determines element layout orientation
+
+* `vertical_layout` - default is `fill` but `scroll` can be used to extend the viewable area
+
+* `self_contained` - default is `TRUE`, embeds all assessts within the html document (e.g. scripts, stylesheets, images, and videos)
+
+* `theme` - specifies a theme to use for styling
+
+* `navbar` - constructs a navigation bar at the top of the screen
+
+
+## Your turn - Exercise 2 (again)
+
+We've just seen a number of possible layout methods for a flexdashboard, lets return to the code in `exercises/ex02.Rmd` and try changing layout more purposefully this time (e.g. a column, multipage, or storyboard layout).
+
+Use this time to experiment with the different layout options and see what seems to work best.
+
+- Try out a multipage or storyboard layout
+
+- Try making a reasonable looking column layout
+
+
+```{r}
+#| echo: false
+countdown::countdown(5)
+```
+
+
+
+# Dynamic flexdashboards
+
+## Parameterized reports
+
+Because flexdashboards are just RMarkdown documents - we can leverage the parameterized reports functionality to pass in arguments (e.g. choice of city) while still keeping the final document static.
+
+This is done by declaring the parameters in the front matter using the `params` field.
+
+```markdown
+---
+...
+params:
+  city: "Los Angeles"
+---
+```
+
+The values are then accessed via the read-only list called `params` within the report's R chunks.
+
+```r
+params$city
+```
+
+::: aside
+See [Chapter 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html) of [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Xie, Alliare, & Grolemund
+:::
+
+
+## Demo 03 - Part 1
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo03-1.Rmd`
+:::
+````{.markdown code-line-numbers="|6-7,15-16"}
+---
+title: "Demo 03 - Part 1"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+params:
+  city: "Los Angeles"
+---
+
+```{{r setup}}
+#| include: false
+library(tidyverse)
+
+d = readr::read_csv(here::here("data/weather.csv"))
+d_city = d |>
+  filter(city %in% params$city)
+```
+
+Row {data-height=650}
+-------------------------------------
+
+### Temperature
+
+```{{r}}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=temp)) +
+  ggtitle(params$city) + 
+  geom_line()
+```
+
+Row {data-height=350}
+-------------------------------------
+   
+### Humidity
+
+```{{r}}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=humidity)) +
+  geom_line()
+```   
+
+###
+
+```{{r}}
+d_city |>
+  mutate(
+    day = lubridate::wday(time, label = TRUE, abbr = FALSE),
+    date = as.character(lubridate::date(time))
+  ) |>
+  group_by(date, day) |>
+  summarize(
+    `min` = min(temp),
+    `max` = max(temp),
+    .groups = "drop"
+  ) |>
+  knitr::kable()
+```
+````
+
+
+## Demo 03 - Part 2
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo03-2.Rmd`
+:::
+````{.markdown code-line-numbers="|6-12,20-21"}
+---
+title: "Demo 03 - Part 2"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+params:
+  city:
+    label: "City"
+    value: "Chicago"
+    input: select
+    choices: ["Chicago", "Durham", "Sedona", "New York", 
+              "Los Angeles", "Seattle", "Omaha"]
+---
+
+```{{r setup}}
+#| include: false
+library(tidyverse)
+
+d = readr::read_csv(here::here("data/weather.csv"))
+d_city = d |>
+  filter(city %in% params$city)
+```
+
+Row {data-height=650}
+-------------------------------------
+
+### Temperature
+
+```{{r}}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=temp)) +
+  ggtitle(params$city) + 
+  geom_line()
+```
+
+Row {data-height=350}
+-------------------------------------
+   
+### Humidity
+
+```{{r}}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=humidity)) +
+  geom_line()
+```   
+
+###
+
+```{{r}}
+d_city |>
+  mutate(
+    day = lubridate::wday(time, label = TRUE, abbr = FALSE),
+    date = as.character(lubridate::date(time))
+  ) |>
+  group_by(date, day) |>
+  summarize(
+    `min` = min(temp),
+    `max` = max(temp),
+    .groups = "drop"
+  ) |>
+  knitr::kable()
+```
+````
+
+
+## Shiny
+
+We can use Shiny components and reactivity in a flexdashboard (or any html output based RMarkdown document) by including `runtime: shiny` in the front matter.
+
+This results in the document being served by shiny server (which has implications for sharing and publishing)
+
+::: aside
+For flexdashboard's using shiny you will often see a special `global` chunk which is responsible for loading data. This is a special feature of runtime: shiny designed to improve startup performance for multi-user shiny documents.
+:::
+
+
+## Demo 04
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo04.Rmd`
+:::
+````{.markdown code-line-numbers="|6|9-13|15-24|30-40|48-55|49,50,54|62-68|72-86"}
+---
+title: "Demo 04"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+runtime: shiny
+---
+
+```{{r global}}
+library(tidyverse)
+
+d = readr::read_csv(here::here("data/weather.csv"))
+```
+
+```{{r}}
+d_vars = d |>
+  select(where(is.numeric)) |>
+  names()
+
+d_city = reactive({
+  d |>
+    filter(city %in% input$city)
+})
+```
+
+
+Inputs {.sidebar}
+-------------------------------------
+
+```{{r}}
+selectInput(
+  "city", "Select a city",
+  choices = c("Chicago", "Durham", "Sedona", "New York", "Los Angeles")
+)
+
+selectInput(
+  "var", "Select a variable",
+  choices = d_vars, selected = "humidity"
+)
+```
+
+
+Row {data-height=650}
+-------------------------------------
+
+### Temperature
+
+```{{r}}
+renderPlot({
+  d_city() |>
+    ggplot(aes(x=time, y=temp)) +
+    ggtitle(input$city) + 
+    geom_line()
+})
+```
+
+Row {data-height=350}
+-------------------------------------
+   
+### Other
+
+```{{r}}
+renderPlot({
+  d_city() |>
+    ggplot(aes(x=time, y=.data[[input$var]])) +
+    geom_line()
+})
+```   
+
+### Temperature Summary
+
+```{{r}}
+renderTable({
+  d_city() |>
+    mutate(
+      day = lubridate::wday(time, label = TRUE, abbr = FALSE),
+      date = as.character(lubridate::date(time))
+    ) |>
+    group_by(date, day) |>
+    summarize(
+      `min` = min(temp),
+      `max` = max(temp),
+      .groups = "drop"
+    ) 
+})
+```
+````
+
+
+## Your turn - Exercise 04
+
+The shiny inputs do not need to live in a sidepanel - try rewriting Demo 04's code such that the inputs for city and variable are located within the temperature and other elements respectively.
+
+The base code is provided in `exercises/ex04.Rmd`, if you have extra time try playing around with the specific positioning of the input elements.
+
+
+```{r}
+#| echo: false
+countdown::countdown(5)
+```
+
+
+## Components
+
+`flexdashboard` provides to builtin html components that can be included in your dashboard:
+
+<br/>
+
+Value boxes:
+
+![](images/flexdashboard_value-box.png){fig-align="center" width="60%"}
+
+Gauges:
+
+![](images/flexdashboard_gauges.png){fig-align="center" width="60%"}
+
+## Implementation
+
+Either component can be included in the dashboard with a static value via directly calling `valueBox()` or `gauge()`
+
+- Shiny reactive variants can be implemented using `valueBoxOutput()` with `renderValueBox()` or `gaugeOutput()` with `renderGauge()`
+
+- Both components take a color argument, this can be either
+
+  - One of the standard bootstrap theme color names (i.e. "success", "warning", "danger", "primary", or "info")
+  
+  - or any other valid CSS color specifier
+
+- Value box icons should use names from [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/),  [Ionicons](https://ionic.io/ionicons/v2/cheatsheet.html), or [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
+
+
+## Demo 05
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo05.Rmd`
+:::
+````{.markdown code-line-numbers="|47-57|59-69|71-87"}
+---
+title: "Demo 05 - value boxes and gauges"
+output: 
+  flexdashboard::flex_dashboard
+runtime: shiny
+---
+
+```{{r global}}
+library(tidyverse)
+library(flexdashboard)
+
+d = readr::read_csv(here::here("data/weather.csv"))
+```
+
+```{{r}}
+d_vars = d |>
+  select(where(is.numeric)) |>
+  names()
+
+d_city = reactive({
+  d |>
+    filter(city %in% input$city)
+})
+```
+
+Col {data-width=800}
+-------------------------------------
+
+###
+
+```{{r}}
+selectInput(
+  "city", "Select a city",
+  choices = c("Chicago", "Durham", "Sedona", "New York", "Los Angeles")
+)
+
+renderPlot({
+  d_city() |>
+    ggplot(aes(x=time, y=temp)) +
+    geom_line()
+})
+```
+
+Col {data-width=200}
+-------------------------------------
+
+### Min temperature 
+
+```{{r}}
+renderGauge({
+  gauge(
+    min(d_city()$temp),
+    min = 0, max=120, symbol = "°F",
+    gaugeSectors(success=c(60,90), warning=c(0,50), danger=c(90,120))
+  )
+})
+```
+
+### Max temperature
+
+```{{r}}
+renderGauge({
+  gauge(
+    max(d_city()$temp),
+    min = 0, max=120, symbol = "°F",
+    gaugeSectors(success=c(60,90), warning=c(0,50), danger=c(90,120))
+  )
+})
+```
+
+### Avg temperature
+
+```{{r}}
+renderValueBox({
+  avg = mean(d_city()$temp) |> round(1)
+  valueBox(
+    avg,
+    caption = "Avg temp",
+    icon = "fa-thermometer-half",
+    color = case_when(
+      avg >= 0 & avg < 50 ~ "warning",
+      avg >=50 & avg < 90 ~ "success",
+      avg >=90 & avg < 120 ~ "danger"
+    )
+  )
+})
+```
+````
+
+## Linked brushing
+
+This has nothing in particular to do with flexdashboard but is a super useful technique for improving interactivity.
+
+With Shiny `plotOutput()`s can also be used to generate inputs based on user click events. Here we are using the brush rectangular selection to subset the data and then updating the relevant components.
+
+For more technical details on how all of this weeks see [Chapter 7](https://mastering-shiny.org/action-graphics.html) of [Mastering Shiny](https://mastering-shiny.org/index.html).
+
+
+## Demo 06
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo06.Rmd`
+:::
+````{.markdown code-line-numbers="|44-53|16-30|25-30|60-82|84-94|89"}
+---
+title: "Demo 06 - Linked brushing"
+output: 
+  flexdashboard::flex_dashboard
+runtime: shiny
+---
+
+```{{r global}}
+library(tidyverse)
+library(flexdashboard)
+
+d = readr::read_csv(here::here("data/weather.csv"))
+```
+
+```{{r}}
+d_vars = d |>
+  select(where(is.numeric)) |>
+  names()
+
+d_city = reactive({
+  d |>
+    filter(city %in% input$city)
+})
+
+d_selected = reactive({
+  db = shiny::brushedPoints(d_city(), input$plot_brush)
+  if (nrow(db) == 0)
+    db = d_city()
+  db
+})
+```
+
+Col {data-width=800}
+-------------------------------------
+
+###
+
+```{{r}}
+selectInput(
+  "city", "Select a city",
+  choices = c("Chicago", "Durham", "Sedona", "New York", "Los Angeles")
+)
+
+renderPlot(
+  {
+    d_city() |>
+      ggplot(aes(x=time, y=temp)) +
+      geom_line()
+  },
+  outputArgs = list(
+    brush = shiny::brushOpts(id = "plot_brush")
+  )
+)
+```
+
+Col {data-width=200}
+-------------------------------------
+   
+   
+### Starting time
+
+```{{r}}
+renderValueBox({
+  valueBox(
+    min(d_selected()$time),
+    caption = "Starting time",
+    icon = "fa-calendar-days"
+  )
+})
+```
+
+### Ending time
+
+```{{r}}
+renderValueBox({
+  valueBox(
+    max(d_selected()$time),
+    caption = "Ending time",
+    icon = "fa-calendar-days"
+  )
+})
+```
+
+### Min temperature 
+
+```{{r}}
+renderGauge({
+  gauge(
+    min(d_selected()$temp),
+    min = 0, max=120, symbol = "°F",
+    gaugeSectors(success=c(60,90), warning=c(0,50), danger=c(90,120))
+  )
+})
+```
+
+### Max temperature
+
+```{{r}}
+renderGauge({
+  gauge(
+    max(d_selected()$temp),
+    min = 0, max=120, symbol = "°F",
+    gaugeSectors(success=c(60,90), warning=c(0,50), danger=c(90,120))
+  )
+})
+```
+
+### Avg temperature
+
+```{{r}}
+renderValueBox({
+  avg = mean(d_selected()$temp) |> round(1)
+  valueBox(
+    avg,
+    caption = "Avg temp",
+    icon = "fa-thermometer-half",
+    color = case_when(
+      avg >= 0 & avg < 50 ~ "warning",
+      avg >=50 & avg < 90 ~ "success",
+      avg >=90 & avg < 120 ~ "danger"
+    )
+  )
+})
+```
+````
