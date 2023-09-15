@@ -1,0 +1,94 @@
+---
+title: "Getting Started with Shiny<br/>Publishing"
+author: "Colin Rundel"
+format: 
+  revealjs:
+    logo: images/shiny.png
+    footer: "posit::conf 2023 - Getting Started with Shiny"
+    slide-number: true
+    highlight-style: a11y
+    theme: [default, custom.scss]
+    self-contained: true
+execute:
+  echo: true
+title-slide-attributes:
+    data-background-image: "images/Hyatt-Regency-Chicago.webp"
+    data-background-size: cover
+    data-background-opacity: "0.5"
+---
+
+
+# Deploying Shiny apps
+
+## shinyapps.io
+
+If you have not done so already - go to [shinyapps.io](https://www.shinyapps.io/) and sign up for an account.
+
+* You can create a new account via email & a password
+
+* or via o-auth through Google or GitHub.
+
+If asked to pick a plan, use the Free option (more than sufficient for our needs here)
+
+## Organizing your app
+
+For deployment generally apps will be organized as a single folder that contains all the necessary components (R script(s), data files, other static content).
+
+* Pay attention to the nature of any paths used in your code 
+
+  * Absolute paths are almost certainly going to break
+  
+  * Relative paths should be to the root of the app folder
+  
+* Static files (e.g. css, js, images, etc.) generally are placed in the `www/` subfolder
+
+* Your script *does not* need to be named `app.R` or `ui.R`/`server.R`
+
+* Check / think about package dependencies
+
+
+## Your turn - Exercise 06
+
+Now we will publish one of the demo apps to shinyapps.io (or posit.cloud)
+
+1. Pick your favorite demo or exercise from today and package it up either as an app in `exercises/ex06app` (you will need to create this folder)
+    - Make sure to copy the data (`data/weather.csv`) into this folder
+    - and adjust any paths if necessary
+  
+2. Open the script file in `exercises/ex06app` and click the Publish Document button in the upper right of the pane (look for the ![](images/publish_button.png) icon)
+
+    - You should be presented with the "Publish to server", click on the Add New Account link in the upper right
+    
+    - Select shinyapps.io and follow the instructions to connect
+    
+    - When retrieving your token for shinyapps.io you may need to click `Dashboard` first and then your name (both in the upper right)
+    
+    
+::: aside
+If you took part in the Getting Started with Shiny workshop yesterday you can try publishing to posit.cloud instead, the option should be prepopulated on the "Publish to server" dialog.
+:::
+
+## Your turn - Exercise 06 (cont.)
+
+3. Once authenticated you should be back at the "Publish to server" dialog, use this to select which files to include (select your script and data file)
+
+4. Your Shiny app should now be deploying and should open on shinyapps.io once live - check to see if everything works, if not go back and check Steps 1 and 3.
+
+
+```{r}
+#| echo: false
+countdown::countdown(10)
+```
+
+
+## Other publishing options
+
+- For other R users - you can share your script(s) and data directly 
+
+  - or better yet, bundle them into an R package
+  
+- Run a local instance of [shiny server](https://posit.co/products/open-source/shinyserver/)
+
+- Use shinyapps.io (public) or posit.cloud (within team)
+
+- License Posit Connect

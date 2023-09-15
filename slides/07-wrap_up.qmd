@@ -1,0 +1,124 @@
+---
+title: "Getting Started with Shiny<br/>Wrap-up & Next steps"
+author: "Colin Rundel"
+format: 
+  revealjs:
+    logo: images/shiny.png
+    footer: "posit::conf 2023 - Shiny Dashboards"
+    slide-number: true
+    highlight-style: a11y
+    theme: [default, custom.scss]
+    self-contained: true
+execute:
+  echo: true
+title-slide-attributes:
+    data-background-image: "images/Hyatt-Regency-Chicago.webp"
+    data-background-size: cover
+    data-background-opacity: "0.5"
+---
+
+# What next / what else
+
+## Shiny user showcase
+
+::: {.large style="text-align: center"}
+[shiny.posit.co/r/gallery/](https://shiny.posit.co/r/gallery/)
+:::
+
+> The Shiny User Showcase is comprised of contributions from the Shiny app developer community. The apps are categorized into application areas and presented with a brief description, tags, and for many, the source code. Note that many of these apps are winners and honorable mentions of our annual Shiny contest!
+
+Shiny contest winners blog posts:
+
+* [1st contest winners](https://www.rstudio.com/blog/first-shiny-contest-winners/)
+
+* [2nd contest winners](https://www.rstudio.com/blog/winners-of-the-2nd-shiny-contest/)
+
+* [3rd contest winners](https://www.rstudio.com/blog/winners-of-the-3rd-annual-shiny-contest/)
+
+
+## htmlwidgets
+
+::: {.large style="text-align: center"}
+[htmlwidgets.org](https://www.htmlwidgets.org/)
+:::
+
+> The htmlwidgets package provides a framework for easily creating R bindings to JavaScript libraries. Widgets created using the framework can be:
+>
+> * Used at the R console for data analysis just like conventional R plots (via RStudio Viewer).
+> * Seamlessly embedded within R Markdown documents and Shiny web applications.
+> * Saved as standalone web pages for ad-hoc sharing via email, Dropbox, etc.
+
+
+## Awesome Shiny Extensions
+
+::: {.large style="text-align: center"}
+[github.com/nanxstats/awesome-shiny-extensions](https://github.com/nanxstats/awesome-shiny-extensions)
+:::
+
+> A curated list of awesome R packages that offer extended UI or server components for the R web framework Shiny.
+
+![](https://raw.githubusercontent.com/nanxstats/awesome-shiny-extensions/master/logo.png){fig-align="center" width="20%"}
+
+
+
+## [RinteRface](https://rinterface.com/)
+
+> HTML templates for 
+>
+>RinteRface aims at bringing the most famous open source HTML templates to R
+
+- GitHub organization with a collection of packages for improving your Shiny interfaces
+
+  - shinydashboard+, bs4dash, shinymobile, + many more
+
+- David Granjon & Maya Gans workshop - [Web Design for Shiny Devs](https://webdesign4shiny.rinterface.com/)
+
+
+## bslib
+
+We just got to play around with this package a little bit today - it is well worth a deeper dive and following future developments.
+
+- The website + documentation are excellent and a good place to start
+
+- Recent blog posts of interest:
+
+  - [Shiny for R updates: tooltips, popovers, a new theme, and more](https://shiny.posit.co/blog/posts/bslib-tooltips/)
+  
+  - [Towards easy, delightful, and customizable dashboards in Shiny for R with {bslib}](https://shiny.posit.co/blog/posts/bslib-dashboards/)
+
+
+# Q&A 
+
+
+## Workshop Survey
+
+<br/><br/><br/><br/>
+
+::: {.larger style="text-align: center;"}
+<http://pos.it/conf-workshop-survey>
+:::
+
+
+## Thank you!
+
+<table class="details">
+  <tr>
+    <td style="text-align:center">&nbsp;`r fontawesome::fa("link")`</td>
+    <td>FIXME</td>
+  </tr>
+  <tr>
+    <td style="text-align:center">&nbsp;`r fontawesome::fa("file")`</td>
+    <td>[posit-conf-2023/shiny-r-intro/](https://github.com/posit-conf-2023/shiny-r-intro)</td>
+  </tr>
+  <tr>
+    <td style="text-align:center">&nbsp;`r fontawesome::fa("envelope")`</td>
+    <td>
+    <a href="mailto:rundel@gmail.com">rundel@gmail.com</a><br/>
+    <a href="mailto:colin.rundel@duke.edu">colin.rundel@duke.edu</a>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center">&nbsp;`r fontawesome::fa("github")`</td>
+    <td><a href="https://github.com/rundel">rundel</a></td>
+  </tr>
+</table>
