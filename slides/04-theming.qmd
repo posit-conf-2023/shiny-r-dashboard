@@ -91,7 +91,7 @@ Due to the ubiquity of Bootstrap a large amount of community effort has gone int
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo09.Rmd`
 :::
-````{.markdown code-line-numbers="|17-19|17-19,4-6"}
+````{.markdown code-line-numbers="|18-20|18-20,4-6"}
 ---
 title: "Demo 09 - Dynamic theming"
 output: 
@@ -104,6 +104,7 @@ runtime: shiny
 ```{{r global}}
 library(tidyverse)
 library(flexdashboard)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 ```
@@ -216,12 +217,12 @@ In the case of our flexdashboard (or other shiny app), all we need to do is to i
 - Using the value `"auto"` will attempt to resolve the `bg`, `fg`, `accent`, or `font` values at plot time.
 
 
-## Demo 13 - thematic
+## Demo 10 - thematic
 
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo10.Rmd`
 :::
-````{.markdown code-line-numbers="|17-20"}
+````{.markdown code-line-numbers="|18-21"}
 ---
 title: "Demo 10 - thematic"
 output: 
@@ -234,6 +235,7 @@ runtime: shiny
 ```{{r global}}
 library(tidyverse)
 library(flexdashboard)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 ```
