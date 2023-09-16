@@ -14,7 +14,7 @@ execute:
 title-slide-attributes:
     data-background-image: "images/Hyatt-Regency-Chicago.webp"
     data-background-size: cover
-    data-background-opacity: "0.5"
+    data-background-opacity: "0.33"
 ---
 
 ## flexdashboard
@@ -32,12 +32,12 @@ flexdashboard is the easiest way to get started making dashboards - at its core 
 - Quarto is not currently supported
 
 
-## Demo 02
+## Demo 02 - A basic flexdashboard
 
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo02.Rmd`
 :::
-````{.markdown code-line-numbers=""}
+````{.markdown code-line-numbers="|1-6|8-16|18-28|30-57|33-40|42-57"}
 ---
 title: "Demo 02"
 output: 
@@ -45,9 +45,10 @@ output:
     orientation: rows
 ---
 
-```{{r setup}}
+```{{r global}}
 #| include: false
 library(tidyverse)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 d_city = d |>
@@ -96,9 +97,9 @@ d_city |>
 ```
 ````
 
-## Your turn - Exercise 1
+## Your turn - Exercise 02
 
-Open `exercises/ex02.Rmd`, which contains the code from the previous slide, and try running it knitting it.
+Open `exercises/ex02.Rmd`, which contains the code from the previous slide, and try knitting it.
 
 Check that you are able to successfully render the flexdashboard. 
 
@@ -117,7 +118,7 @@ countdown::countdown(5)
 ```
 
 
-# Layouts
+# flexdashboard Layouts
 
 ## Default
 
@@ -452,12 +453,12 @@ a couple of commonly used options that are worth knowning about:
 
 * `self_contained` - default is `TRUE`, embeds all assessts within the html document (e.g. scripts, stylesheets, images, and videos)
 
-* `theme` - specifies a theme to use for styling
+* `theme` - specifies a theme to use for styling (more on this later)
 
 * `navbar` - constructs a navigation bar at the top of the screen
 
 
-## Your turn - Exercise 2 (again)
+## Your turn - Exercise 02 (again)
 
 We've just seen a number of possible layout methods for a flexdashboard, lets return to the code in `exercises/ex02.Rmd` and try changing layout more purposefully this time (e.g. a column, multipage, or storyboard layout).
 
@@ -491,7 +492,7 @@ params:
 ---
 ```
 
-The values are then accessed via the read-only list called `params` within the report's R chunks.
+The values are then accessed via a read-only list called `params` within the report's R chunks.
 
 ```r
 params$city
@@ -507,7 +508,7 @@ See [Chapter 15](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo03-1.Rmd`
 :::
-````{.markdown code-line-numbers="|6-7,15-16"}
+````{.markdown code-line-numbers="|6-7,16-17"}
 ---
 title: "Demo 03 - Part 1"
 output: 
@@ -520,6 +521,7 @@ params:
 ```{{r setup}}
 #| include: false
 library(tidyverse)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 d_city = d |>
@@ -575,7 +577,7 @@ d_city |>
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo03-2.Rmd`
 :::
-````{.markdown code-line-numbers="|6-12,20-21"}
+````{.markdown code-line-numbers="|6-12,21-22"}
 ---
 title: "Demo 03 - Part 2"
 output: 
@@ -593,6 +595,7 @@ params:
 ```{{r setup}}
 #| include: false
 library(tidyverse)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 d_city = d |>
@@ -647,29 +650,29 @@ d_city |>
 
 We can use Shiny components and reactivity in a flexdashboard (or any html output based RMarkdown document) by including `runtime: shiny` in the front matter.
 
-This results in the document being served by shiny server (which has implications for sharing and publishing)
+This results in the document being served by shiny (which has implications for sharing and publishing)
 
 ::: aside
 For flexdashboard's using shiny you will often see a special `global` chunk which is responsible for loading data. This is a special feature of runtime: shiny designed to improve startup performance for multi-user shiny documents.
 :::
 
 
-## Demo 04
+## Demo 04 - shiny + flexdashboard
 
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo04.Rmd`
 :::
-````{.markdown code-line-numbers="|6|9-13|15-24|30-40|48-55|49,50,54|62-68|72-86"}
+````{.markdown code-line-numbers="|5|8-13|15-24|27-40|43-55|60-68"}
 ---
 title: "Demo 04"
 output: 
-  flexdashboard::flex_dashboard:
-    orientation: rows
+  flexdashboard::flex_dashboard
 runtime: shiny
 ---
 
 ```{{r global}}
 library(tidyverse)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 ```
@@ -702,7 +705,7 @@ selectInput(
 ```
 
 
-Row {data-height=650}
+Col
 -------------------------------------
 
 ### Temperature
@@ -716,7 +719,7 @@ renderPlot({
 })
 ```
 
-Row {data-height=350}
+Col
 -------------------------------------
    
 ### Other
@@ -728,24 +731,6 @@ renderPlot({
     geom_line()
 })
 ```   
-
-### Temperature Summary
-
-```{{r}}
-renderTable({
-  d_city() |>
-    mutate(
-      day = lubridate::wday(time, label = TRUE, abbr = FALSE),
-      date = as.character(lubridate::date(time))
-    ) |>
-    group_by(date, day) |>
-    summarize(
-      `min` = min(temp),
-      `max` = max(temp),
-      .groups = "drop"
-    ) 
-})
-```
 ````
 
 
@@ -764,7 +749,7 @@ countdown::countdown(5)
 
 ## Components
 
-`flexdashboard` provides to builtin html components that can be included in your dashboard:
+`flexdashboard` provides two built-in html components that can be included in your dashboard:
 
 <br/>
 
@@ -791,12 +776,12 @@ Either component can be included in the dashboard with a static value via direct
 - Value box icons should use names from [Font Awesome](https://fortawesome.github.io/Font-Awesome/icons/),  [Ionicons](https://ionic.io/ionicons/v2/cheatsheet.html), or [Bootstrap Glyphicons](https://getbootstrap.com/components/#glyphicons)
 
 
-## Demo 05
+## Demo 05 - Components
 
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo05.Rmd`
 :::
-````{.markdown code-line-numbers="|47-57|59-69|71-87"}
+````{.markdown code-line-numbers="|45-88|48-58|60-70|72-88"}
 ---
 title: "Demo 05 - value boxes and gauges"
 output: 
@@ -807,6 +792,7 @@ runtime: shiny
 ```{{r global}}
 library(tidyverse)
 library(flexdashboard)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 ```
@@ -888,19 +874,20 @@ renderValueBox({
 
 ## Linked brushing
 
-This has nothing in particular to do with flexdashboard but is a super useful technique for improving interactivity.
+This has nothing in particular to do with flexdashboard but is a super useful Shiny technique for improving interactivity.
 
-With Shiny `plotOutput()`s can also be used to generate inputs based on user click events. Here we are using the brush rectangular selection to subset the data and then updating the relevant components.
+Shiny's `plotOutput()`s can also be used to generate inputs based on user click events. Here we are using the brush rectangular selection to subset the data and then updating the relevant components.
 
+::: aside
 For more technical details on how all of this weeks see [Chapter 7](https://mastering-shiny.org/action-graphics.html) of [Mastering Shiny](https://mastering-shiny.org/index.html).
+:::
 
-
-## Demo 06
+## Demo 06 - Linked brushing
 
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo06.Rmd`
 :::
-````{.markdown code-line-numbers="|44-53|16-30|25-30|60-82|84-94|89"}
+````{.markdown code-line-numbers="|45-54|16-32|26-31|61-83|85-95|90"}
 ---
 title: "Demo 06 - Linked brushing"
 output: 
@@ -911,6 +898,7 @@ runtime: shiny
 ```{{r global}}
 library(tidyverse)
 library(flexdashboard)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 ```

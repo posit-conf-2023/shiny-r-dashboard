@@ -1,5 +1,5 @@
 ---
-title: "Demo 02"
+title: "Exercise 02"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -8,6 +8,7 @@ output:
 ```{r setup}
 #| include: false
 library(tidyverse)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 d_city = d |>

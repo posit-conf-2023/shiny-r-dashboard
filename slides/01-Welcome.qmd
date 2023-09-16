@@ -14,7 +14,7 @@ execute:
 title-slide-attributes:
     data-background-image: "images/Hyatt-Regency-Chicago.webp"
     data-background-size: cover
-    data-background-opacity: "0.5"
+    data-background-opacity: "0.33"
 ---
 
 ```{r setup}
@@ -82,11 +82,11 @@ countdown::countdown(5)
 <br/><br/>
 
 ::: {.larger style="text-align: center;"}
-<https://github.com/posit-conf-2023/https://github.com/posit-conf-2023/shiny-r-dashboard>
+[github.com/posit-conf-2023/shiny-r-dashboard](https://github.com/posit-conf-2023/shiny-r-dashboard)
 
 <br/>
 
-<https://rstd.io/start-shiny> - FIXME
+[pos.it/dashboard-conf23](http://pos.it/dashboard-conf23)
 :::
 
 
@@ -182,9 +182,8 @@ You should have received an email with an invitation and instructions for joinin
 
 This workshop has a private channel under Workshops,
 
-FIXME
 ::: {.large style="text-align: center"}
-#✨-getting-started-with-shiny
+#shiny-dashboards
 :::
 
 
@@ -199,7 +198,7 @@ This is a great place to ask questions, post resources, memes, or most anything 
 You can use the following link to join the workshops RStudio cloud space,
 
 ::: {style="text-align: center;"}
-<https://bit.ly/conf2023_shiny_dashboard>
+[bit.ly/conf2023_shiny_dashboard](https://bit.ly/conf2023_shiny_dashboard)
 :::
 
 
@@ -208,7 +207,7 @@ You can use the following link to join the workshops RStudio cloud space,
 
 Once you have joined you can then select the `shiny-dashboard` assignment, 
 
-![](images/cloud_assignment.png){fig-align="center" width="60%"} FIXME
+![](images/cloud_assignment.png){fig-align="center" width="60%"}
 
 which should then create a copy of all materials and launch a cloud session for you.
 
@@ -244,7 +243,7 @@ Project root:
 ```
 
 
-## Demo 1
+## Demo 01 - A starter app
 
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo01.R`
@@ -254,9 +253,9 @@ Project root:
 #| file: "demos/demo01.R"
 ```
 
-## Your turn - Exercise 1
+## Your turn - Exercise 01
 
-Copy the code from the previous slide (or open `exercises/ex01.R`) and try running it in your console.
+Using the code in `exercises/ex01.R` (same as the previous slide) try running the app in Posit cloud.
 
 Check that you are able successfully run the shiny app and are able to interact with it. 
 

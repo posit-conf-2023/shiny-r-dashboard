@@ -1,0 +1,56 @@
+---
+title: "Exercise 02"
+output: 
+  flexdashboard::flex_dashboard
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+ggplot2::theme_set(ggplot2::theme_bw())
+
+d = readr::read_csv(here::here("data/weather.csv"))
+d_city = d |>
+  filter(city %in% "Chicago")
+```
+
+Test 1
+-------------------------------------
+
+### Temperature
+
+```{r}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=temp)) +
+  geom_line()
+```
+
+Test 2
+-------------------------------------
+   
+### Humidity
+
+```{r}
+#| echo: false
+d_city |>
+  ggplot(aes(x=time, y=humidity)) +
+  geom_line()
+```   
+
+###
+
+```{r}
+d_city |>
+  mutate(
+    day = lubridate::wday(time, label = TRUE, abbr = FALSE),
+    date = as.character(lubridate::date(time))
+  ) |>
+  group_by(date, day) |>
+  summarize(
+    `min` = min(temp),
+    `max` = max(temp),
+    .groups = "drop"
+  ) |>
+  knitr::kable()
+```

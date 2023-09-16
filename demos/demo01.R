@@ -1,5 +1,8 @@
 library(tidyverse)
 library(shiny)
+
+ggplot2::theme_set(ggplot2::theme_bw())
+
 d = readr::read_csv(here::here("data/weather.csv"))
 
 d_vars = d |>
@@ -35,7 +38,7 @@ shinyApp(
     
     output$plot = renderPlot({
       d_city() |>
-        ggplot(aes(x=time, y=.data[[input$var]])) +
+        ggplot(aes(x=time, y=.data[[input$var]], color=city)) +
         ggtitle(input$var) +
         geom_line()
     })

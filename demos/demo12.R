@@ -2,6 +2,8 @@ library(tidyverse)
 library(shiny)
 library(bslib)
 
+ggplot2::theme_set(ggplot2::theme_bw())
+
 d = readr::read_csv(here::here("data/weather.csv"))
 
 d_vars = d |>

@@ -15,6 +15,7 @@ params:
 ```{r setup}
 #| include: false
 library(tidyverse)
+ggplot2::theme_set(ggplot2::theme_bw())
 
 d = readr::read_csv(here::here("data/weather.csv"))
 d_city = d |>
