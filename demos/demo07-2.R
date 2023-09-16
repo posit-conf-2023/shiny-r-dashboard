@@ -10,7 +10,6 @@ d_vars = d |>
   select(where(is.numeric)) |>
   names()
 
-
 shinyApp(
   ui = dashboardPage(
     dashboardHeader(
@@ -66,6 +65,5 @@ shinyApp(
         ggtitle(input$var) +
         geom_line()
     })
-    
   }
 )

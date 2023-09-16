@@ -28,8 +28,6 @@ is a package that enables the easy generation of [bootstrap](https://getbootstra
 
 The core of the package is a common dashboard layout and a number of specialized UI elements (static and reactive) for creating an attractive interface. 
 
-<br/>
-
 ![](images/shinydashboard_layout.png){fig-align="center" width="40%"}
 
 
@@ -62,16 +60,27 @@ This is a container for the `title` and any `dropdownMenu()`s
 
 - Dynamic menus can be generated using `dropdownMenuOutput()` and `renderMenu()` in the ui and server respectively.
 
-. . .
-
 ::: {.r-stack}
-![](images/shinydashboard_menu-messages.png){.fragment .fade-in-then-out width="900"}
 
-![](images/shinydashboard_menu-notifications.png){.fragment .fade-in-then-out width="900"}
+::: {.fragment .fade-in-then-out}
+Messages:
 
-![](images/shinydashboard_menu-tasks.png){.fragment .fade-in-then-out width="900"}
+![](images/shinydashboard_menu-messages.png){width="900"}
 :::
 
+::: {.fragment .fade-in-then-out}
+Notifications:
+
+![](images/shinydashboard_menu-notifications.png){width="900"}
+:::
+
+::: {.fragment .fade-in-then-out}
+Tasks:
+
+![](images/shinydashboard_menu-tasks.png){width="900"}
+:::
+
+:::
 
 ## Dashboard sidebar
 
@@ -96,7 +105,7 @@ Alternatively, it can also function as a `tabPanel()` like menu.
 :::
 ```{r}
 #| eval: false
-#| code-line-numbers: "|17-36|18-25|26-36|38-49|41,29|34,45|52-69"
+#| code-line-numbers: "|18-39|19-26|27-37|39-50|42,30|35,46|52-71"
 #| file: "../demos/demo07-1.R"
 ```
 
@@ -107,7 +116,7 @@ Alternatively, it can also function as a `tabPanel()` like menu.
 :::
 ```{r}
 #| eval: false
-#| code-line-numbers: "|26|42-47"
+#| code-line-numbers: "|27|43-48"
 #| file: "../demos/demo07-2.R"
 ```
 
@@ -275,11 +284,11 @@ dashboardBody(
 
 
 
-## Your turn - Exercise 5
+## Your turn - Exercise 05
 
-Starting with the app from Demo 5 convert the app to use shinydashboard instead of flexdashboard - we have provided some basic scaffolding shinydashboard code in `exercises/ex05.R` and the demo code in `exercises/ex05.Rmd`.
+Starting with the app from Demo 05 convert the app to use shinydashboard instead of flexdashboard - we have provided some basic scaffolding shinydashboard code in `exercises/ex05.R` and the demo code in `exercises/ex05.Rmd`.
 
-Try to preserve the column-based layout and general proportions (read column widths) of the original.
+Try to preserve the column-based layout and general proportions (i.e. column widths) of the original.
 
 Since shinydashboard does not have a gauge element you can use a value box for everything
   - If you're feeling adventurous try using a flexdashboard gauge in your shinydashboard, what happens?
