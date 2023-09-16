@@ -90,19 +90,21 @@ countdown::countdown(5)
 :::
 
 
-## Schedule
-
+## Schedule (roughly)
 
 | Time          | Activity              |
 | :------------ | :-------------------- |
 | 09:00 - 09:30 | Welcome               |
-| 09:30 - 10:30 | Case study            |
+| 09:30 - 10:30 | flexdashboard         |
 | 10:30 - 11:00 | *Coffee break*        |
 | 11:00 - 12:30 | flexdashboard         |
 | 12:30 - 13:30 | *Lunch break*         |
-| 13:30 - 15:00 | shinydashboard        |
+| 13:30 - 14:30 | Shinydashboard        |
+| 14:30 - 15:00 | Theming               |
 | 15:00 - 15:30 | *Coffee break*        |
-| 15:30 - 17:00 | bslib                 |
+| 15:30 - 16:00 | bslib                 |
+| 16:00 - 16:30 | Publishing            |
+| 16:30 - 17:00 | Wrap-up               |
 
 
 ## WiFi
