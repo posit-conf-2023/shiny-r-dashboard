@@ -43,17 +43,17 @@ There is nothing you will need to do before attending this workshop. We will be 
 
 | Time          | Activity              | Materials                   |
 | :------------ | :-------------------- | :-------------------------- |
-| 09:00 - 09:30 | Welcome               | <a href="">:green_book:</a> |
-| 09:30 - 10:30 | flexdashboard         | <a href="">:green_book:</a> |
+| 09:00 - 09:30 | Welcome               | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/01-Welcome.html">:green_book:</a> |
+| 09:30 - 10:30 | flexdashboard         | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/02-flexdashboard.html">:green_book:</a> |
 | 10:30 - 11:00 | *Coffee break*        |                             |
-| 11:00 - 12:30 | flexdashboard         | <a href="">:green_book:</a> |
+| 11:00 - 12:30 | flexdashboard         | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/02-flexdashboard.html">:green_book:</a> |
 | 12:30 - 13:30 | *Lunch break*         |                             |
-| 13:30 - 14:30 | Shinydashboard        | <a href="">:green_book:</a> |
-| 14:30 - 15:00 | Theming               | <a href="">:green_book:</a> |
+| 13:30 - 14:30 | Shinydashboard        | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/03-shinydashboard.html">:green_book:</a> |
+| 14:30 - 15:00 | Theming               | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/04-theming.html">:green_book:</a> |
 | 15:00 - 15:30 | *Coffee break*        |                             |
-| 15:30 - 16:00 | bslib                 | <a href="">:green_book:</a> |
-| 16:00 - 16:30 | Publishing            | <a href="">:green_book:</a> |
-| 16:30 - 17:00 | Wrap-up               | <a href="">:green_book:</a> |
+| 15:30 - 16:00 | bslib                 | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/05-bslib.html">:green_book:</a> |
+| 16:00 - 16:30 | Publishing            | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/06-publishing.html">:green_book:</a> |
+| 16:30 - 17:00 | Wrap-up               | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/07-wrap_up.html">:green_book:</a> |
 
 
 ## Instructor
