@@ -18,3 +18,9 @@ exclude:
 - demos/demo06.Rmd
 - demos/demo09.Rmd
 - demos/demo10.Rmd
+- exercises/ex02.Rmd
+- exercises/ex03.Rmd
+- exercises/ex04.Rmd
+- exercises/ex05.Rmd
+- exercises/solutions/ex02_soln.Rmd
+- exercises/solutions/ex04_soln.Rmd
