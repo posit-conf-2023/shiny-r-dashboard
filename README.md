@@ -8,7 +8,7 @@ by Colin Rundel
 
 :spiral_calendar: September 18, 2023  
 :alarm_clock:     09:00 - 17:00  
-:hotel:           ROOM TBD  
+:hotel:           Grand Hall K ([:world_map: map](https://www.hyattregencychicagophotos.com/images/HOTEL_MAP.pdf))  
 :writing_hand:    [pos.it/conf](http://pos.it/conf)
 
 -----
