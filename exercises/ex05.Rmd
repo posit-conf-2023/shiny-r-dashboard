@@ -1,5 +1,5 @@
 ---
-title: "Demo 05 - value boxes and gauges"
+title: "Exercise 05"
 output: 
   flexdashboard::flex_dashboard
 runtime: shiny

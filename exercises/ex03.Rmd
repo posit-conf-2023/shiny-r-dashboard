@@ -1,5 +1,5 @@
 ---
-title: "Demo 02"
+title: "Exercise 03"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows

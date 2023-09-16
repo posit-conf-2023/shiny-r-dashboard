@@ -458,9 +458,9 @@ a couple of commonly used options that are worth knowning about:
 * `navbar` - constructs a navigation bar at the top of the screen
 
 
-## Your turn - Exercise 02 (again)
+## Your turn - Exercise 03
 
-We've just seen a number of possible layout methods for a flexdashboard, lets return to the code in `exercises/ex02.Rmd` and try changing layout more purposefully this time (e.g. a column, multipage, or storyboard layout).
+We've just seen a number of possible layout methods for a flexdashboard, lets return to the code we've seen previously, provided in `exercises/ex03.Rmd`, and try changing layout more purposefully this time (e.g. a column, multipage, or storyboard layout).
 
 Use this time to experiment with the different layout options and see what seems to work best.
 

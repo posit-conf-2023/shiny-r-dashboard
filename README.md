@@ -1,4 +1,3 @@
-&nbsp;
 
 ### posit::conf 2023
 
