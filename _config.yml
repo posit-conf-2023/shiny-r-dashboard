@@ -10,3 +10,11 @@ exclude:
 - slides/05-bslib.qmd
 - slides/06-publishing.qmd
 - slides/07-wrap_up.qmd
+- demos/demo02.Rmd
+- demos/demo03-1.Rmd
+- demos/demo03-2.Rmd
+- demos/demo04.Rmd
+- demos/demo05.Rmd
+- demos/demo06.Rmd
+- demos/demo09.Rmd
+- demos/demo10.Rmd

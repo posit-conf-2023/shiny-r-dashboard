@@ -42,19 +42,19 @@ There is nothing you will need to do before attending this workshop. We will be 
 
 ### Day 1
 
-| Time          | Activity              | Materials                |
-| :------------ | :-------------------- | :----------------------- |
-| 09:00 - 09:30 | Welcome               | 
-| 09:30 - 10:30 | flexdashboard         | 
-| 10:30 - 11:00 | *Coffee break*        | 
-| 11:00 - 12:30 | flexdashboard         | 
-| 12:30 - 13:30 | *Lunch break*         | 
-| 13:30 - 14:30 | Shinydashboard        |
-| 14:30 - 15:00 | Theming               | 
-| 15:00 - 15:30 | *Coffee break*        | 
-| 15:30 - 16:00 | bslib                 | 
-| 16:00 - 16:30 | Publishing            | 
-| 16:30 - 17:00 | Wrap-up               | 
+| Time          | Activity              | Materials                   |
+| :------------ | :-------------------- | :-------------------------- |
+| 09:00 - 09:30 | Welcome               | <a href="">:green_book:</a> |
+| 09:30 - 10:30 | flexdashboard         | <a href="">:green_book:</a> |
+| 10:30 - 11:00 | *Coffee break*        |                             |
+| 11:00 - 12:30 | flexdashboard         | <a href="">:green_book:</a> |
+| 12:30 - 13:30 | *Lunch break*         |                             |
+| 13:30 - 14:30 | Shinydashboard        | <a href="">:green_book:</a> |
+| 14:30 - 15:00 | Theming               | <a href="">:green_book:</a> |
+| 15:00 - 15:30 | *Coffee break*        |                             |
+| 15:30 - 16:00 | bslib                 | <a href="">:green_book:</a> |
+| 16:00 - 16:30 | Publishing            | <a href="">:green_book:</a> |
+| 16:30 - 17:00 | Wrap-up               | <a href="">:green_book:</a> |
 
 
 ## Instructor
