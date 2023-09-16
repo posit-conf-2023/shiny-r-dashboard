@@ -43,7 +43,7 @@ There is nothing you will need to do before attending this workshop. We will be 
 ### Day 1
 
 | Time          | Activity              | Materials |
-| :------------ | :-------------------- | :-------: |
+| :------------ | :-------------------- | :-------- |
 | 09:00 - 09:30 | Welcome               | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/01-Welcome.html">:green_book:</a> |
 | 09:30 - 10:30 | flexdashboard         | <a href="https://posit-conf-2023.github.io/shiny-r-dashboard/slides/02-flexdashboard.html">:green_book:</a> |
 | 10:30 - 11:00 | *Coffee break*        |                             |
