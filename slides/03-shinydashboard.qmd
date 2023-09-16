@@ -1,5 +1,5 @@
 ---
-title: "Shiny Dashboards<br/>`shinydashboard`"
+title: "Shiny Dashboards<br/>shinydashboard"
 author: "Colin Rundel"
 format: 
   revealjs:
