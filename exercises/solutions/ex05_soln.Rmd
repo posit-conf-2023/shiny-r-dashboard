@@ -34,55 +34,64 @@ selectInput(
   "city", "Select a city",
   choices = c("Chicago", "Durham", "Sedona", "New York", "Los Angeles")
 )
+selectInput(
+  "var", "Select a variable",
+  choices = d_vars, selected = "temp"
+)
 
 renderPlot({
   d_city() |>
-    ggplot(aes(x=time, y=temp)) +
+    ggplot(aes(x=time, y=.data[[input$var]])) +
+    ggtitle(input$var) +
     geom_line()
-}, height=600)
+}, height=500)
 ```
 
 Col {data-width=200}
 -------------------------------------
 
-### Min temperature 
-
-```{r}
-renderGauge({
-  gauge(
-    min(d_city()$temp),
-    min = 0, max=120, symbol = "°F",
-    gaugeSectors(success=c(60,90), warning=c(0,50), danger=c(90,120))
-  )
-})
-```
-
-### Max temperature
-
-```{r}
-renderGauge({
-  gauge(
-    max(d_city()$temp),
-    min = 0, max=120, symbol = "°F",
-    gaugeSectors(success=c(60,90), warning=c(0,50), danger=c(90,120))
-  )
-})
-```
-
-### Avg temperature
+### Min `r renderText(input$var)`
 
 ```{r}
 renderValueBox({
-  avg = mean(d_city()$temp) |> round(1)
   valueBox(
-    avg,
-    caption = "Avg temp",
-    icon = "fa-thermometer-half",
-    color = case_when(
-      avg >= 0 & avg < 50 ~ "warning",
-      avg >=50 & avg < 90 ~ "success",
-      avg >=90 & avg < 120 ~ "danger"
-    )
+    min(d_city()[[input$var]]) |> round(2),
+    caption = paste("Min", input$var),
+    color = "primary"
   )
 })
 ```
+
+### Avg `r renderText(input$var)`
+
+```{r}
+renderGauge({
+  gauge(
+    mean(d_city()[[input$var]]) |> round(2),
+    min = min(d_city()[[input$var]]), 
+    max = max(d_city()[[input$var]])
+  )
+})
+
+#renderValueBox({
+#  valueBox(
+#    ,
+#    caption = paste("Avg", input$var),
+#    color = "success"
+#  )
+#})
+```
+
+### Max `r renderText(input$var)`
+
+```{r}
+renderValueBox({
+  valueBox(
+    max(d_city()[[input$var]]) |> round(2),
+    caption = paste("Max", input$var),
+    color = "danger"
+  )
+})
+```
+
+

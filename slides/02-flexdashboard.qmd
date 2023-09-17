@@ -741,6 +741,10 @@ The shiny inputs do not need to live in a sidepanel - try rewriting Demo 04's co
 The base code is provided in `exercises/ex04.Rmd`, if you have extra time try playing around with the specific positioning of the input elements.
 
 
+::: aside
+**Hint** - if you are having difficulty with your plots fitting on screen you can adjust their size via `renderPlot()`s `width` and `height` arguments.
+:::
+
 ```{r}
 #| echo: false
 countdown::countdown(5)
@@ -823,7 +827,7 @@ renderPlot({
   d_city() |>
     ggplot(aes(x=time, y=temp)) +
     geom_line()
-})
+}, height = 600)
 ```
 
 Col {data-width=200}
@@ -872,6 +876,39 @@ renderValueBox({
 ```
 ````
 
+## Your turn - Exercise 05
+
+Modify the code provide in `ex05.Rmd` (based on `demo05.R`) so that the user is able to select different data features (e.g. humidity, feelslike, etc.) and have that change reflected in the plot, value boxes, and gauges.
+
+::: {.small}
+Some guidance:
+
+- Think about the choice of components given the additional flexibility we have added
+
+  - With that in mind think about the properties of the components
+  
+- If you want to add reactive text to a heading you use an inline code chunk, e.g.
+  ```{=html}
+  <div class="sourceCode">
+  <pre class="sourceCode markdown">
+  <code class="sourceCode markdown">
+  ### &#96;r renderText(input$x)&#96;
+  </code>
+  </pre>
+  </div>
+  ```
+
+:::
+
+
+
+
+```{r}
+#| echo: false
+countdown::countdown(8)
+```
+
+
 ## Linked brushing
 
 This has nothing in particular to do with flexdashboard but is a super useful Shiny technique for improving interactivity.
@@ -887,7 +924,7 @@ For more technical details on how all of this weeks see [Chapter 7](https://mast
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo06.Rmd`
 :::
-````{.markdown code-line-numbers="|45-54|16-32|26-31|61-83|85-95|90"}
+````{.markdown code-line-numbers="|45-55|17-31|26-31|62-84|86-96|91"}
 ---
 title: "Demo 06 - Linked brushing"
 output: 
@@ -940,7 +977,8 @@ renderPlot(
   },
   outputArgs = list(
     brush = shiny::brushOpts(id = "plot_brush")
-  )
+  ),
+  height = 600
 )
 ```
 
@@ -1014,3 +1052,5 @@ renderValueBox({
 })
 ```
 ````
+
+
