@@ -45,7 +45,7 @@ renderPlot({
   d_city() |>
     ggplot(aes(x=time, y=temp)) +
     geom_line()
-})
+}, height = 600)
 ```
 
 Col {data-width=200}

@@ -1,0 +1,87 @@
+---
+title: "Exercise 05"
+output: 
+  flexdashboard::flex_dashboard
+runtime: shiny
+---
+
+```{r global}
+library(tidyverse)
+library(flexdashboard)
+
+d = readr::read_csv(here::here("data/weather.csv"))
+```
+
+```{r}
+d_vars = d |>
+  select(where(is.numeric)) |>
+  names()
+
+d_city = reactive({
+  d |>
+    filter(city %in% input$city)
+})
+```
+
+Col {data-width=800}
+-------------------------------------
+
+###
+
+```{r}
+selectInput(
+  "city", "Select a city",
+  choices = c("Chicago", "Durham", "Sedona", "New York", "Los Angeles")
+)
+
+renderPlot({
+  d_city() |>
+    ggplot(aes(x=time, y=temp)) +
+    geom_line()
+})
+```
+
+Col {data-width=200}
+-------------------------------------
+
+### Min temperature 
+
+```{r}
+renderGauge({
+  gauge(
+    min(d_city()$temp),
+    min = 0, max=120, symbol = "°F",
+    gaugeSectors(success=c(60,90), warning=c(0,50), danger=c(90,120))
+  )
+})
+```
+
+### Max temperature
+
+```{r}
+renderGauge({
+  gauge(
+    max(d_city()$temp),
+    min = 0, max=120, symbol = "°F",
+    gaugeSectors(success=c(60,90), warning=c(0,50), danger=c(90,120))
+  )
+})
+```
+
+### Avg temperature
+
+```{r}
+renderValueBox({
+  avg = mean(d_city()$temp) |> round(1)
+  valueBox(
+    avg,
+    caption = "Avg temp",
+    icon = "fa-thermometer-half",
+    color = case_when(
+      avg >= 0 & avg < 50 ~ "warning",
+      avg >=50 & avg < 90 ~ "success",
+      avg >=90 & avg < 120 ~ "danger"
+    )
+  )
+})
+```

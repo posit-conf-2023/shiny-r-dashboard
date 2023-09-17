@@ -319,3 +319,20 @@ renderValueBox({
 })
 ```
 ````
+
+## Your turn - Exercise 07
+
+Using the code provided in `exercises/ex07.Rmd` add the following call to the app and try running the dashboard.
+
+```r
+thematic::thematic_shiny(bg = "auto", fg = "auto", font = "auto")
+```
+
+- Try changing the main theme, the background and foreground colors
+
+- Try changing the accent colors
+
+- Try changing the fonts
+
+
+

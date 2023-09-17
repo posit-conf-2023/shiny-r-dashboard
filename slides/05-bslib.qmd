@@ -42,15 +42,15 @@ knitr::opts_knit$set(root.dir = here::here())
 >    * Shiny and R Markdown currently default to Bootstrap 3 and may continue to do so to maintain backwards compatibility.
 
 
-## Demo 11 - bslib dashboard
+## Demo 10 - bslib dashboard
 
 ::: {.code-file .sourceCode .cell-code}
-`r fontawesome::fa("file")` `demos/demo11.R`
+`r fontawesome::fa("file")` `demos/demo10.R`
 :::
 ```{r}
 #| eval: false
 #| code-line-numbers: "|14-37|14|15|16-26|27-36"
-#| file: "demos/demo11.R"
+#| file: "demos/demo10.R"
 ```
 
 ## Layouts
@@ -74,25 +74,25 @@ Columns can be constructed using `layout_columns()` (or `layout_columns_wrap()`)
 To get the most out of bslib it is important to wrap your head around [filling layouts](https://rstudio.github.io/bslib/articles/filling/index.html)
 :::
 
-## Demo 12 - layout
+## Demo 11 - layout
+
+::: {.code-file .sourceCode .cell-code}
+`r fontawesome::fa("file")` `demos/demo11.R`
+:::
+```{r}
+#| eval: false
+#| code-line-numbers: "|28-47|29|30-47|35-40|48-53|68,69"
+#| file: "demos/demo11.R"
+```
+
+
+## Demo 12 - other components
 
 ::: {.code-file .sourceCode .cell-code}
 `r fontawesome::fa("file")` `demos/demo12.R`
 :::
 ```{r}
 #| eval: false
-#| code-line-numbers: "|28-47|29|30-47|35-40|48-53|68,69"
-#| file: "demos/demo12.R"
-```
-
-
-## Demo 13 - other components
-
-::: {.code-file .sourceCode .cell-code}
-`r fontawesome::fa("file")` `demos/demo13.R`
-:::
-```{r}
-#| eval: false
 #| code-line-numbers: "|16|17-31|20-28|32-44|34-43"
-#| file: "demos/demo13.R"
+#| file: "demos/demo12.R"
 ```

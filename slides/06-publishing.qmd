@@ -47,11 +47,11 @@ For deployment generally apps will be organized as a single folder that contains
 * Check / think about package dependencies
 
 
-## Your turn - Exercise 06
+## Your turn - Exercise 08
 
 Now we will publish one of the demo apps to shinyapps.io (or posit.cloud)
 
-1. Pick your favorite demo or exercise from today and package it up either as an app in `exercises/ex06app` (you will need to create this folder)
+1. Pick your favorite demo or exercise from today and package it up either as an app in `exercises/ex08app` (you will need to create this folder)
     - Make sure to copy the data (`data/weather.csv`) into this folder
     - and adjust any paths if necessary
   

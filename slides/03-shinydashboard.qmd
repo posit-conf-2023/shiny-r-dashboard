@@ -284,9 +284,9 @@ dashboardBody(
 
 
 
-## Your turn - Exercise 05
+## Your turn - Exercise 06
 
-Starting with the app from Demo 05 convert the app to use shinydashboard instead of flexdashboard - we have provided some basic scaffolding shinydashboard code in `exercises/ex05.R` and the demo code in `exercises/ex05.Rmd`.
+Starting with the app from Demo 05 convert the app to use shinydashboard instead of flexdashboard - we have provided some basic scaffolding shinydashboard code in `exercises/ex06.R` and the demo code in `exercises/ex06.Rmd`.
 
 Try to preserve the column-based layout and general proportions (i.e. column widths) of the original.
 
