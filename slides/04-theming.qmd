@@ -9,6 +9,8 @@ format:
     highlight-style: a11y
     theme: [default, custom.scss]
     self-contained: true
+    include-after-body: 
+      file: reveal-resizer.html
 execute:
   echo: true
 title-slide-attributes:
@@ -38,7 +40,8 @@ This is not the only place that Bootstrap shows up in the R ecosystem - e.g. bot
 
 The html interface elements in this package are based on a specific version of a style template called AdminLTE (v2) which is in turn based on Bootstrap (v3). Because of this additional template layer (and its bootstrap version dependency) we don't have the flexibility to leverage bootstrap based theming using `bslib`.
 
-Therefore theming options are limited to,
+Therefore theming options are limited to
+
 - Using one of the builtin color themes via the `skin` argument to `dashboardPage()`
 
 - Including [custom CSS](https://rstudio.github.io/shinydashboard/appearance.html#css)
@@ -63,17 +66,13 @@ For those interested in a dashboard package using the latest AdminLTE template c
 
 ## bslib
 
-> The bslib R package provides a modern UI toolkit for Shiny and R Markdown based on Bootstrap. It facilitates:
->
-> * Creation of delightful and customizable Shiny dashboards.
->    
->    * The underlying UI components (e.g., cards, value boxes, sidebars, etc) are also designed to work in other contexts (e.g., in R Markdown).
-> * Custom theming of Shiny apps and R Markdown documents.
-> 
->    * Apps can even be themed interactively in real-time.
-> * Use of modern versions of Bootstrap and Bootswatch
->
->    * Shiny and R Markdown currently default to Bootstrap 3 and may continue to do so to maintain backwards compatibility.
+The bslib R package provides a modern UI toolkit for Shiny and R Markdown based on Bootstrap. It facilitates:
+
+* **Custom theming of Shiny apps and R Markdown documents.**
+   * Apps can even be themed interactively in real-time.
+* Use of **modern versions of Bootstrap** and Bootswatch
+   * Shiny and R Markdown currently default to Bootstrap 3 and may continue to do so to maintain backwards compatibility.
+* Creation of delightful and customizable Shiny dashboards (next session!)
 
 
 

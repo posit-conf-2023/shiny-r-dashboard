@@ -9,6 +9,9 @@ format:
     highlight-style: a11y
     theme: [default, custom.scss]
     self-contained: true
+    code-overflow: scroll
+    include-after-body: 
+      file: reveal-resizer.html
 execute:
   echo: true
 title-slide-attributes:
@@ -22,8 +25,21 @@ title-slide-attributes:
 library(shiny)
 library(tidyverse)
 
+options(width = 58)
 knitr::opts_knit$set(root.dir = here::here())
 ```
+
+
+## Shiny Dashboards {.center .text-center .larger background-image="images/Hyatt-Regency-Chicago.webp" background-size="cover" background-opacity="0.3"}
+
+### Welcome!
+
+Wifi: **Posit Conf 2023** \
+Password: **conf2023**
+
+::: large
+pos.it/dashboard-conf23
+:::
 
 # Welcome
 
@@ -52,10 +68,31 @@ knitr::opts_knit$set(root.dir = here::here())
 :::
 :::
 
+## Instructor
+
+::: columns
+::: {.column width="40%"}
+![](images/garrick-social-profile.jpeg){fig-align="center" width="77%"}
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="50%"}
+### Garrick Aden-Buie 
+
+Software Engineer \
+Data Science Educator \
+Shiny at Posit
+
+[garrickadenbuie.com](https://garrickadenbuie.com)
+:::
+:::
+
 ## Teaching Assistants
 
-- Garrick Aden-Buie (Posit)
 - Maya Gans
+
 - Katherine Simeon
 
 ## Introduce yourself
@@ -96,12 +133,12 @@ countdown::countdown(5)
 | :------------ | :-------------------- |
 | 09:00 - 09:30 | Welcome               |
 | 09:30 - 10:30 | flexdashboard         |
-| 10:30 - 11:00 | *Coffee break*        |
+| 10:30 - 11:00 | **Coffee break**      |
 | 11:00 - 12:30 | flexdashboard         |
-| 12:30 - 13:30 | *Lunch break*         |
+| 12:30 - 13:30 | **Lunch break**       |
 | 13:30 - 14:30 | Shinydashboard        |
 | 14:30 - 15:00 | Theming               |
-| 15:00 - 15:30 | *Coffee break*        |
+| 15:00 - 15:30 | **Coffee break**      |
 | 15:30 - 16:00 | bslib                 |
 | 16:00 - 16:30 | Publishing            |
 | 16:30 - 17:00 | Wrap-up               |
@@ -180,7 +217,8 @@ I'm done
 
 ## Other communication (Discord)
 
-You should have received an email with an invitation and instructions for joining the conference's discord server.
+Go [posit.co/conference](https://posit.co/conference), click **Login**.
+Once you've logged in there's large image to connect you to the conference Discord server.
 
 This workshop has a private channel under Workshops,
 
@@ -195,23 +233,20 @@ This is a great place to ask questions, post resources, memes, or most anything 
 
 # Computational Environment
 
-## RStudio Cloud
+## Posit Cloud
 
-You can use the following link to join the workshops RStudio cloud space,
+You can use the following link to join the workshops Posit Cloud space,
 
-::: {style="text-align: center;"}
+::: {.larger style="text-align: center; padding:0.5em; border:4px dashed goldenrod;"}
 [bit.ly/conf2023_shiny_dashboard](https://bit.ly/conf2023_shiny_dashboard)
 :::
 
-
-
-<br/>
 
 Once you have joined you can then select the `shiny-dashboard` assignment, 
 
 ![](images/cloud_assignment.png){fig-align="center" width="60%"}
 
-which should then create a copy of all materials and launch a cloud session for you.
+This creates a copy of all materials and launches a cloud session for you.
 
 
 ## Cloud session
@@ -241,6 +276,7 @@ Project root:
 ## Data
 
 ```{r}
+#| code-overflow: scroll
 (d = read_csv("data/weather.csv"))
 ```
 

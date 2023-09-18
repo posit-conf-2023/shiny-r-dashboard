@@ -9,6 +9,8 @@ format:
     highlight-style: a11y
     theme: [default, custom.scss]
     self-contained: true
+    include-after-body: 
+      file: reveal-resizer.html
 execute:
   echo: true
 title-slide-attributes:
@@ -26,9 +28,13 @@ If you have not done so already - go to [shinyapps.io](https://www.shinyapps.io/
 
 * You can create a new account via email & a password
 
-* or via o-auth through Google or GitHub.
+* or via OAuth through Google or GitHub.
 
 If asked to pick a plan, use the Free option (more than sufficient for our needs here)
+
+### Posit Cloud
+
+Or deploy your app directly from Posit Cloud... to Posit Cloud!
 
 ## Organizing your app
 

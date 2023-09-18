@@ -4,16 +4,20 @@ $presentation-font-size-root: 32px;
 
 /*-- scss:rules --*/
 
+.text-center {
+  text-align: center;
+}
+
 input#numeric {
   width: 250px;
   height: 25px;
-  font-size: 20px;
+  font-size: 0.625em;
 }
 
 input#text {
   width: 250px;
   height: 25px;
-  font-size: 20px;
+  font-size: 0.75em;
 }
 
 .shiny-input-container label.control-label {
@@ -21,7 +25,7 @@ input#text {
 }
 
 .shiny-input-container, .shiny-text-output {
-  font-size: 24px;
+  font-size: 0.75em;
 }
 
 .reveal .slide .columns:nth-child(3n) {
@@ -45,12 +49,12 @@ input#text {
   max-height: 4rem;
 }
 
-.reveal countdown {
+.reveal .countdown {
   position: fixed;
   bottom: 1.5em;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 60px;
+  font-size: 2em;
   border: 2px solid;
   border-radius: 5px;
   padding-left: 12px;
@@ -70,15 +74,21 @@ input#text {
 .reveal .code-file p {
   margin-top: 2px;
   margin-bottom: 2px;
-  font-size: 18px;
+  font-size: 0.625em;
   margin-left: 0.8em;
 }
 
-
-element.style {
+.reveal pre {
+  font-size: 0.9em;
 }
+
+.code-file + .sourceCode,
+.code-file + .cell {
+    font-size: 0.66em;
+}
+
 .reveal div.sourceCode pre code {
-    min-height: 100%;
+  min-height: 100%;
 }
 .reveal pre.sourceCode code {
   max-height: 550px;
@@ -90,7 +100,6 @@ element.style {
   padding-top: 0;
   padding-bottom: 0;
 }
-
 .reveal blockquote>p {
   margin-top: 0;
 }

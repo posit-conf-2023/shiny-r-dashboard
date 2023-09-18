@@ -18,6 +18,8 @@ by Colin Rundel
 
 :octocat:         [posit-conf-2023/shiny-r-dashboard](https://github.com/posit-conf-2023/shiny-r-dashboard)
 
+:sun_behind_large_cloud: [bit.ly/conf2023_shiny_dashboard](https://bit.ly/conf2023_shiny_dashboard)
+
 -----
 
 ## Overview

@@ -9,6 +9,8 @@ format:
     highlight-style: a11y
     theme: [default, custom.scss]
     self-contained: true
+    include-after-body: 
+      file: reveal-resizer.html
 execute:
   echo: true
 title-slide-attributes:
@@ -378,6 +380,10 @@ Row {data-height=400}
 ```
 ````
 
+::: aside
+<https://pkgs.rstudio.com/flexdashboard/articles/examples.html> | CRAN Downloads
+:::
+
 ## Storyboard layout
 
 ````markdown
@@ -408,24 +414,26 @@ Some commentary about Frame 2.
 
 ````
 
+::: aside
+<https://pkgs.rstudio.com/flexdashboard/articles/examples.html> | htmlwidgets showcase
+:::
 
 
 
 ## Markdown to layout
 
-From the preceeding examples it is relatively straightforward to see how markdown is translated into the flexdashboard's layout,
+From the preceding examples it is relatively straightforward to see how markdown is translated into the flexdashboard's layout,
 
-* Level 1 headings (e.g. `#` or `==========`) are used to designated Pages
+| | Heading | Purpose |
+|:--|:---|:--|
+| Level 1 | `#` or `=======` | Pages |
+| Level 2 | `##` or `------` | Columns or rows[^lines] |
+| Level 3 | `###` | Chart or output elements[^orientation] |
+| Horizontal Rules | `***`, `---`, or `___` | Separate chart from commentary[^storyboard] |
 
-* Level 2 headings (e.g. `##` or `----------`) are used to designated columns or rows (depending on the orientation option)
-
-* Level 3 headings (e.g. `###`) are used to designated chart / output elements
-
-* Horizontal rules (e.g. `***`, `---`, or `___` on a line by themselves) are used to separate the chart / output from the commentary with a storyboard layout
-
-::: aside
-When using `==========` or `----------` the text on the preceeding line is required but the actual text does not matter. For `#` or `##` a text label is not required.
-:::
+[^orientation]: Depending on the `orientation` option
+[^storyboard]: In a `storyboard` layout
+[^lines]: When using `==========` or `----------` the text on the preceeding line is required but the actual text does not matter. For `#` or `##` a text label is not required.
 
 
 ## Heading options
@@ -741,7 +749,7 @@ The shiny inputs do not need to live in a sidepanel - try rewriting Demo 04's co
 The base code is provided in `exercises/ex04.Rmd`, if you have extra time try playing around with the specific positioning of the input elements.
 
 
-::: aside
+::: small
 **Hint** - if you are having difficulty with your plots fitting on screen you can adjust their size via `renderPlot()`s `width` and `height` arguments.
 :::
 
@@ -888,14 +896,9 @@ Some guidance:
   - With that in mind think about the properties of the components
   
 - If you want to add reactive text to a heading you use an inline code chunk, e.g.
-  ```{=html}
-  <div class="sourceCode">
-  <pre class="sourceCode markdown">
-  <code class="sourceCode markdown">
-  ### &#96;r renderText(input$x)&#96;
-  </code>
-  </pre>
-  </div>
+  
+  ```{verbatim}
+  ### `r renderText(input$x)`
   ```
 
 :::
@@ -916,7 +919,7 @@ This has nothing in particular to do with flexdashboard but is a super useful Sh
 Shiny's `plotOutput()`s can also be used to generate inputs based on user click events. Here we are using the brush rectangular selection to subset the data and then updating the relevant components.
 
 ::: aside
-For more technical details on how all of this weeks see [Chapter 7](https://mastering-shiny.org/action-graphics.html) of [Mastering Shiny](https://mastering-shiny.org/index.html).
+For more technical details on how all of this works see [Chapter 7](https://mastering-shiny.org/action-graphics.html) of [Mastering Shiny](https://mastering-shiny.org/index.html).
 :::
 
 ## Demo 06 - Linked brushing
