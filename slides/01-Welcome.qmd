@@ -136,12 +136,9 @@ countdown::countdown(5)
 | 10:30 - 11:00 | **Coffee break**      |
 | 11:00 - 12:30 | flexdashboard         |
 | 12:30 - 13:30 | **Lunch break**       |
-| 13:30 - 14:30 | Shinydashboard        |
-| 14:30 - 15:00 | Theming               |
+| 13:30 - 15:30 | Shinydashboard / bslib |
 | 15:00 - 15:30 | **Coffee break**      |
-| 15:30 - 16:00 | bslib                 |
-| 16:00 - 16:30 | Publishing            |
-| 16:30 - 17:00 | Wrap-up               |
+| 15:30 - 17:00 | Theming / Publishing / Wrap-up |
 
 
 ## WiFi
