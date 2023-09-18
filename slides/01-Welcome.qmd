@@ -10,8 +10,8 @@ format:
     theme: [default, custom.scss]
     self-contained: true
     code-overflow: scroll
-    include-after-body: 
-      file: reveal-resizer.html
+revealjs-plugins:
+  - revealjs-text-resizer
 execute:
   echo: true
 title-slide-attributes:

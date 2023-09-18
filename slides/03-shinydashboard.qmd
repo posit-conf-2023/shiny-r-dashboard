@@ -9,6 +9,8 @@ format:
     highlight-style: a11y
     theme: [default, custom.scss]
     self-contained: true
+revealjs-plugins:
+  - revealjs-text-resizer
 execute:
   echo: true
 title-slide-attributes:
