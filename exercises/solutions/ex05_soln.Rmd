@@ -65,11 +65,15 @@ renderValueBox({
 ### Avg `r renderText(input$var)`
 
 ```{r}
+d_city_var <- reactive({
+  d_city()[[input$var]]
+})
+
 renderGauge({
   gauge(
-    mean(d_city()[[input$var]]) |> round(2),
-    min = min(d_city()[[input$var]]), 
-    max = max(d_city()[[input$var]])
+    mean(d_city_var()) |> round(2),
+    min = min(d[[input$var]]), 
+    max = max(d[[input$var]])
   )
 })
 

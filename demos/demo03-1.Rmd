@@ -4,7 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: rows
 params:
-  city: "Los Angeles"
+  city: "Chicago"
 ---
 
 ```{r setup}

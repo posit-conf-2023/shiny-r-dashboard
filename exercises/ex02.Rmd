@@ -1,8 +1,9 @@
 ---
 title: "Exercise 02"
-output: 
+output:
   flexdashboard::flex_dashboard:
-    orientation: rows
+    orientation: columns
+    resize_reload: false
 ---
 
 ```{r setup}
@@ -15,8 +16,8 @@ d_city = d |>
   filter(city %in% "Chicago")
 ```
 
-Row {data-height=650}
--------------------------------------
+Column {data-width=650}
+------------------------------------
 
 ### Temperature
 

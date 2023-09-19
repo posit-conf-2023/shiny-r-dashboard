@@ -3,8 +3,7 @@ title: "Demo 10 - thematic"
 output: 
   flexdashboard::flex_dashboard:
     theme: 
-      version: 5
-      bootswatch: sketchy
+      version: 4
 runtime: shiny
 ---
 
@@ -18,6 +17,7 @@ d = readr::read_csv(here::here("data/weather.csv"))
 
 ```{r}
 bslib::bs_themer()
+thematic::thematic_shiny(bg = "auto", fg = "auto", font = "auto")
 ```
 
 ```{r}
@@ -46,7 +46,7 @@ renderPlot({
   d_city() |>
     ggplot(aes(x=time, y=temp)) +
     geom_line()
-}, height = 600)
+})
 ```
 
 Col {data-width=200}
