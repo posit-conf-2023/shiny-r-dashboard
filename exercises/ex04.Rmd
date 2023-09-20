@@ -23,9 +23,10 @@ d_city = reactive({
 })
 ```
 
-
-Inputs {.sidebar}
+Col
 -------------------------------------
+
+### Temperature
 
 ```{r}
 selectInput(
@@ -33,36 +34,29 @@ selectInput(
   choices = c("Chicago", "Durham", "Sedona", "New York", "Los Angeles")
 )
 
-selectInput(
-  "var", "Select a variable",
-  choices = d_vars, selected = "humidity"
-)
-```
-
-
-Col
--------------------------------------
-
-### Temperature
-
-```{r}
 renderPlot({
   d_city() |>
     ggplot(aes(x=time, y=temp)) +
     ggtitle(input$city) + 
     geom_line()
-})
+}, height = 300)
 ```
 
 Col
 -------------------------------------
    
-### Other
+### `r renderText(input$var)`
 
 ```{r}
+
+selectInput(
+  "var", "Select a variable",
+  choices = d_vars, selected = "humidity"
+)
+
 renderPlot({
   d_city() |>
     ggplot(aes(x=time, y=.data[[input$var]])) +
     geom_line()
-})
+}, height = 300)
 ```   

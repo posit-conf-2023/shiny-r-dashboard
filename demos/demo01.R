@@ -14,7 +14,7 @@ shinyApp(
     titlePanel("Weather Forecasts"),
     sidebarLayout(
       sidebarPanel(
-        selectInput(
+        checkboxGroupInput(
           "city", "Select a city",
           choices = c("Chicago", "Durham", "Sedona", "New York", "Los Angeles")
         ),
@@ -23,9 +23,17 @@ shinyApp(
           choices = d_vars, selected = "temp"
         )
       ),
-      mainPanel( 
-        plotOutput("plot"),
-        tableOutput("minmax")
+      mainPanel(
+        fluidRow(
+          column(
+            5,
+            plotOutput("plot"),
+          ),
+          column(
+            7,
+            tableOutput("minmax")
+          )
+        )
       )
     )
   ),

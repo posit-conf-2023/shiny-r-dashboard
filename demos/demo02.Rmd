@@ -47,11 +47,10 @@ d_city |>
     day = lubridate::wday(time, label = TRUE, abbr = FALSE),
     date = as.character(lubridate::date(time))
   ) |>
-  group_by(date, day) |>
   summarize(
     `min` = min(temp),
     `max` = max(temp),
-    .groups = "drop"
+    .by = c(date, day)
   ) |>
   knitr::kable()
 ```
