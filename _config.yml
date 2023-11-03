@@ -6,8 +6,8 @@ exclude:
 - slides/01-Welcome.qmd
 - slides/02-flexdashboard.qmd
 - slides/03-shinydashboard.qmd
-- slides/04-theming.qmd
-- slides/05-bslib.qmd
+- slides/04-bslib.qmd
+- slides/05-theming.qmd
 - slides/06-publishing.qmd
 - slides/07-wrap_up.qmd
 - demos/demo02.Rmd
@@ -17,10 +17,13 @@ exclude:
 - demos/demo05.Rmd
 - demos/demo06.Rmd
 - demos/demo09.Rmd
-- demos/demo10.Rmd
 - exercises/ex02.Rmd
 - exercises/ex03.Rmd
 - exercises/ex04.Rmd
 - exercises/ex05.Rmd
+- exercises/ex06.Rmd
+- exercises/ex07.Rmd
 - exercises/solutions/ex02_soln.Rmd
 - exercises/solutions/ex04_soln.Rmd
+- exercises/solutions/ex05_soln.Rmd
+- exercises/solutions/ex07_soln.Rmd
